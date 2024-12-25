@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { createUser } from "@/lib/prisma";
+import { createUser } from "@/util";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
         await createUser();
         alert("Done");
       } catch (e) {
-        alert("errir"+ JSON.stringify(e.message))
+        alert("error"+ JSON.stringify(e.message))
         console.log("err:prisma", e);
       }
     }
