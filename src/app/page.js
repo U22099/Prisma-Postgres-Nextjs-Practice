@@ -11,7 +11,7 @@ export default function Home() {
         await createUser();
         alert("Done");
       } catch (e) {
-        alert("errir")
+        alert("errir"+ JSON.stringify(e.message))
         console.log("err:prisma", e);
       }
     }
