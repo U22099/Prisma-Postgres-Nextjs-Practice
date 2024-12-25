@@ -8,7 +8,7 @@ export default function Home() {
   useEffect(() => {
     async function run() {
       try {
-        createUser();
+        await createUser();
         alert("Done");
       } catch (e) {
         console.log(e);
