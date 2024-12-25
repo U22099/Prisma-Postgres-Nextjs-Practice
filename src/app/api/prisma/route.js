@@ -6,7 +6,7 @@ async function createUser() {
   const user = await prisma.user.create({
     data: {
       name: 'John Doe',
-      email: 'john.doe@example.com',
+      email: 'john.doe@example.com'+Math.floor(Math.random()* 10),
     },
   });
   console.log(user);
@@ -15,8 +15,8 @@ async function createUser() {
 export const GET = async () => {
   try{
     await createUser();
-    NextResponse.json({ status: 200 }, { msg: "Success "});
+    return NextResponse.json({ status: 200 }, { msg: "Success "});
   } catch (err) {
-    NextResponse.json({ status: 500}, { msg: "Error"});
+    return NextResponse.json({ status: 500}, { msg: "Error"});
   }
 }
