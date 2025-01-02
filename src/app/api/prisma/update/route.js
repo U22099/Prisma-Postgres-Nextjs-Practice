@@ -21,8 +21,8 @@ export const POST = async (req) => {
   try {
     const { data } = await req.json();
     await updateUser(data);
-    return NextResponse.json({ status: 200 }, { data });
+    return NextResponse.json({ msg: "Success" }, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ status: 500 }, { msg: "Error" });
+    return NextResponse.json({ msg: "Error"}, { status: 500});
   }
 }

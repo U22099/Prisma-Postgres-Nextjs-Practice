@@ -14,9 +14,10 @@ async function readUsers() {
 
 export const GET = async () => {
   try {
-    const users = await readUser();
-    return NextResponse.json({ status: 200 }, { users });
+    const users = await readUsers();
+    return NextResponse.json({ users }, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ status: 500 }, { msg: "Error" });
+    console.log(err);
+    return NextResponse.json({ msg: "Error" }, { status: 500 });
   }
 }

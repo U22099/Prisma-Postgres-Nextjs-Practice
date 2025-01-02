@@ -18,8 +18,8 @@ export const POST = async (req) => {
   try{
     const { data } = await req.json();
     await createUser(data);
-    return NextResponse.json({ status: 200 }, { msg: "Success"});
+    return NextResponse.json({ msg: "Success"}, { status: 200 });
   } catch (err) {
-    return NextResponse.json({ status: 500}, { msg: "Error"});
+    return NextResponse.json({ msg: "Error"}, { status: 500});
   }
 }
