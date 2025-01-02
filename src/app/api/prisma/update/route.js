@@ -19,7 +19,7 @@ async function updateUser(data) {
 
 export const POST = async (req) => {
   try {
-    const { data } = req.json();
+    const { data } = await req.json();
     await updateUser(data);
     return NextResponse.json({ status: 200 }, { data });
   } catch (err) {

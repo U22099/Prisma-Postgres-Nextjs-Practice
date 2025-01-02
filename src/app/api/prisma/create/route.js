@@ -16,7 +16,7 @@ async function createUser(data) {
 
 export const POST = async (req) => {
   try{
-    const { data } = req.json();
+    const { data } = await req.json();
     await createUser(data);
     return NextResponse.json({ status: 200 }, { msg: "Success"});
   } catch (err) {
