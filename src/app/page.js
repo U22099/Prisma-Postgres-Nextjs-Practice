@@ -26,7 +26,7 @@ export default function Home() {
         {createState&&<p className={createState.error ? "text-red-600" : "text-green-600"}>{createState.msg}</p>}
         <button disabled={loading} onClick={async () => await createUser({
           id, name, gender
-        }, setCreateState, setLoading)} className="bg-black dark:bg-white py-3 w-full mx-3 rounded shadow-xl text-white dark:text-black">Create New User</button>
+        }, setCreateState, setLoading)} className="bg-black dark:bg-white py-3 w-full mx-3 rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Create New User"}</button>
       </section>
       { /*Read Section*/ }
       <section className="flex flex-col gap-2 w-full">
@@ -39,7 +39,7 @@ export default function Home() {
           </div>)}
         </section>
         {readState&&<p className={readState.error ? "text-red-600" : "text-green-600"}>{readState.msg}</p>}
-        <button disabled={loading} onClick={async () => await readUsers(setReadState, setLoading)} className="bg-black dark:bg-white py-3 w-full mx-3 rounded shadow-xl text-white dark:text-black">Read All User</button>
+        <button disabled={loading} onClick={async () => await readUsers(setReadState, setLoading)} className="bg-black dark:bg-white py-3 w-full mx-3 rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Read All User"}</button>
       </section>
     </main>
   );
