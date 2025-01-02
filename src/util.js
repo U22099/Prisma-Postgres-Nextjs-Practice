@@ -26,7 +26,7 @@ export async function readUsers(setState) {
       setState({
         error: false,
         msg: "Success",
-        data: data.users
+        data: data.users || []
       });
     }
     console.log(data);

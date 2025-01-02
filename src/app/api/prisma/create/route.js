@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 async function createUser(data) {
   try{
     const user = await prisma.user.create({
-      data,
+      data: { ...data }
     });
     console.log(data);
   } catch(err) {

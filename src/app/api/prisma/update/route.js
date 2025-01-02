@@ -8,7 +8,7 @@ async function updateUser(data) {
       where: {
         id: data.id,
       }, 
-      data,
+      data: { ...data }
     });
     console.log(data);
   } catch (err) {
