@@ -4,31 +4,40 @@ import { createUser, readUsers, updateUser, deleteUser } from "@/util";
 import { useState } from "react";
 
 export default function Home() {
-  const createTypeArray = [
-    "id","name", "gender"
+  const createAndUpdateTypeArray = [
+    "id", "name", "gender"
   ]
   const [id, setID] = useState();
   const [name, setName] = useState();
   const [gender, setGender] = useState();
-  const [createState, setCreateState] = useState();
+  const [createAndUpdateState, setCreateAndUpdateState] = useState();
   const [readState, setReadState] = useState();
-  const [ loading, setLoading ] = useState();
+  const [deleteId, setDeleteID] = useState();
+  const [deleteState, setDeleteState] = useState();
+
+  const [loading, setLoading] = useState();
   return (
     <main className="flex flex-col justify-start items-start gap-4 h-full w-full p-4 dark:bg-black">
       {/*Create Section*/}
       <section className="flex flex-col gap-2 w-full">
         <h1 className="font-bold dark:text-white text-lg">Create User</h1>
-        {createTypeArray.map((type, i) => <Inputs key={i} type={type} action={(e) => {
+        {createAndUpdateTypeArray.map((type, i) => <Inputs key={i} type={type} action={(e) => {
           if(e.target.value){
             type === "id" ? setID(e.target.value) : type === "name" ? setName(e.target.value) : setGender(e.target.value)
           }
         }}/>)}
-        {createState&&<p className={createState.error ? "text-red-600" : "text-green-600"}>{createState.msg}</p>}
-        <button disabled={loading} onClick={async () => await createUser({
+        {createAndUpdateState&&<p className={createAndUpdateState.error ? "text-red-600" : "text-green-600"}>{createAndUpdateState.msg}</p>}
+        <button disabled={loading} onClick={async () => {
+        if (!id || !gender || !name) setCreateAndUpdateState({
+          error: true,
+          msg: "Missing user property"
+        })
+        createAndUpdateTypeArray.forEach(x => document.getElementById(x).value === "");
+        await createUser({
           id, 
           name, 
           gender
-        }, setCreateState, setLoading)} className="bg-black dark:bg-white py-3 w-full rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Create New User"}</button>
+        }, setCreateAndUpdateState, setLoading)}} className="bg-black dark:bg-white py-3 w-full rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Create New User"}</button>
       </section>
       { /*Read Section*/ }
       <section className="flex flex-col gap-2 w-full">
@@ -42,6 +51,50 @@ export default function Home() {
         </section>
         {readState&&<p className={readState.error ? "text-red-600" : "text-green-600"}>{readState.msg}</p>}
         <button disabled={loading} onClick={async () => await readUsers(setReadState, setLoading)} className="bg-black dark:bg-white py-3 w-full rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Read All User"}</button>
+      </section>
+      { /*Update Section*/ }
+      <section className="flex flex-col gap-2 w-full">
+        <h1 className="font-bold dark:text-white text-lg">Update User</h1>
+        {createAndUpdateTypeArray.map((type, i) => <Inputs key={i} type={type} action={(e) => {
+          if(e.target.value){
+            type === "id" ? setID(e.target.value) : type === "name" ? setName(e.target.value) : setGender(e.target.value)
+          }
+        }}/>)}
+        {createAndUpdateState&&<p className={createAndUpdateState.error ? "text-red-600" : "text-green-600"}>{createAndUpdateState.msg}</p>}
+        <button disabled={loading} onClick={async () => {
+        if(!id || !gender || !name) setCreateAndUpdateState({
+          error: true,
+          msg: "Missing user property"
+        })
+        createAndUpdateTypeArray.forEach(x => document.getElementById(x).value === "");
+        setGender("");
+        setName("");
+        setID("");
+        await updateUser({
+          id, 
+          name, 
+          gender
+        }, setCreateAndUpdateState, setLoading)}} className="bg-black dark:bg-white py-3 w-full rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Update User"}</button>
+      </section>
+      { /*Delete Section*/ }
+      <section className="flex flex-col gap-2 w-full">
+        <h1 className="font-bold dark:text-white text-lg">Delete User</h1>
+        <Inputs type={"deleteId"} action={(e) => {
+          if(e.target.value){
+            setDeleteID(e.target.value);
+          }
+        }}/>
+        {deleteState&&<p className={deleteState.error ? "text-red-600" : "text-green-600"}>{deleteState.msg}</p>}
+        <button disabled={loading} onClick={async () => {
+        if(!deleteId) setDeleteState({
+          error: true,
+          msg: "Missing user property"
+        })
+        document.getElementById("deleteId").value === "";
+        setDeleteID("");
+        await deleteUser({
+          id: deleteId
+        }, setDeleteState, setLoading)}} className="bg-black dark:bg-white py-3 w-full rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Delete User"}</button>
       </section>
     </main>
   );
