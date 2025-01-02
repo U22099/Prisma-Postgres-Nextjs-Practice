@@ -31,7 +31,7 @@ export default function Home() {
       <section className="flex flex-col gap-2 w-full">
         <h1 className="font-bold dark:text-white text-lg">Read Users</h1>
         <section className="flex flex-wrap gap-2">
-          {readState.data&&readState.data.map((x, i) => <div className="border p-2 rounded flex flex-col gap-2 w-fit h-fig" key={i}>
+          {readState&&readState.data.map((x, i) => <div className="border p-2 rounded flex flex-col gap-2 w-fit h-fig" key={i}>
             <p className="font-bold text-sm dark:text-white">Id: {x.id}</p>
             <p className="font-bold text-sm dark:text-white">Name: {x.name}</p>
             <p className="font-bold text-sm dark:text-white">Gender: {x.gender}</p>
