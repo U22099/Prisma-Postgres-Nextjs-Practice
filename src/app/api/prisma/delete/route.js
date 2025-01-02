@@ -11,13 +11,14 @@ async function deleteUser(id) {
     });
     console.log(id);
   } catch (err) {
-    console.log(err);
+    console.log(err)
+    throw Error(err.message);
   }
 }
 
 export const POST = async (req) => {
   try {
-    const { id } = req.json();
+    const id = req.json();
     await deleteUser(id);
     return NextResponse.json({ status: 200 }, { msg: "Success " });
   } catch (err) {

@@ -7,7 +7,8 @@ async function readUsers() {
     const users = await prisma.user.findMany();
     return users;
   } catch (err) {
-    console.log(err);
+    console.log(err)
+    throw Error(err.message);
   }
 }
 

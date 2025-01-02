@@ -9,13 +9,14 @@ async function createUser(data) {
       data: { ...data }
     });
   } catch(err) {
-    console.log(err);
+    console.log(err)
+    throw Error(err.message);
   }
 }
 
 export const POST = async (req) => {
   try{
-    const { data } = req.json();
+    const data = req.json();
     await createUser(data);
     return NextResponse.json({ status: 200 }, { msg: "Success"});
   } catch (err) {

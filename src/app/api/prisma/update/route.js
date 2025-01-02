@@ -7,18 +7,19 @@ async function updateUser(data) {
     const user = await prisma.user.update({
       where: {
         id: data.id,
-      }, 
+      },
       data: { ...data }
     });
     console.log(data);
   } catch (err) {
-    console.log(err);
+    console.log(err)
+    throw Error(err.message);
   }
 }
 
 export const POST = async (req) => {
   try {
-    const { data } = req.json();
+    const data = req.json();
     await updateUser(data);
     return NextResponse.json({ status: 200 }, { data });
   } catch (err) {
