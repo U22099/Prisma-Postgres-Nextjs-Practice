@@ -13,8 +13,8 @@ export async function createUser(data, setState, setLoading) {
   } catch (err) {
     console.log(err);
     setState({
-      error: false,
-      msg: res.data.msg
+      error: true,
+      msg: "Error"
     });
   } finally {
     setLoading(false);
@@ -36,8 +36,8 @@ export async function readUsers(setState, setLoading) {
   } catch (err) {
     console.log(err);
     setState({
-      error: false,
-      msg: res.data.msg
+      error: true,
+      msg: "Error"
     });
   } finally {
     setLoading(false);
@@ -57,8 +57,8 @@ export async function updateUser(data, setState, setLoading) {
   } catch (err) {
     console.log(err);
     setState({
-      error: false,
-      msg: res.data.msg
+      error: true,
+      msg: "Error"
     });
   } finally {
     setLoading(false);
@@ -78,8 +78,8 @@ export async function deleteUser(data, setState, setLoading) {
   } catch (err) {
     console.log(err);
     setState({
-      error: false,
-      msg: res.data.msg
+      error: true,
+      msg: "Error"
     });
   } finally {
     setLoading(false);
