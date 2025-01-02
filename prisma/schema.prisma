@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id String! @id
-  name String!
-  gender String!
+  id String @id
+  name String
+  gender String
 }
