@@ -44,7 +44,7 @@ export async function readUsers(setState, setLoading) {
   }
 }
 
-export async function createUser(data, setState, setLoading) {
+export async function updateUser(data, setState, setLoading) {
   try {
     setLoading(true);
     const res = await axios.post("/api/prisma/update", { data });
@@ -65,10 +65,10 @@ export async function createUser(data, setState, setLoading) {
   }
 }
 
-export async function createUser(data, setState, setLoading) {
+export async function deleteUser(data, setState, setLoading) {
   try {
     setLoading(true);
-    const res = await axios.post("/api/prisma/create", { id: data });
+    const res = await axios.post("/api/prisma/delete", { id: data });
     if (res.status === 200) {
       setState({
         error: false,
