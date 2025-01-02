@@ -25,7 +25,9 @@ export default function Home() {
         }}/>)}
         {createState&&<p className={createState.error ? "text-red-600" : "text-green-600"}>{createState.msg}</p>}
         <button disabled={loading} onClick={async () => await createUser({
-          id, name, gender
+          id, 
+          name, 
+          gender
         }, setCreateState, setLoading)} className="bg-black dark:bg-white py-3 w-full rounded shadow-xl text-white dark:text-black">{loading ? "Loading..." : "Create New User"}</button>
       </section>
       { /*Read Section*/ }

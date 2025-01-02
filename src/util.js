@@ -3,7 +3,9 @@ import axios from "axios";
 export async function createUser(data, setState, setLoading) {
   try {
     setLoading(true);
+    console.log(data)
     const res = await axios.post("/api/prisma/create", data);
+    console.log(res)
     if (res.status === 200) {
       setState({
         error: false,
